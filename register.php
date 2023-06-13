@@ -61,7 +61,7 @@
 </head>
 
 <body>
-    <?php
+<?php
     
     $fullname = $username = $gender = $password = $phone = $repass = $email = $address = "";
     $flag = false;
@@ -131,111 +131,7 @@
         $data = htmlspecialchars($data); // bỏ tác dụng cuẩ thẻ html, tương tự hàm htmlentities()
         return $data;
     }
-    ?>
-
-
-    <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']) ?>" name="register" method="post">
-        <table>
-            <thead>
-                <tr>
-                    <td>
-                        <h1>Register page</h1>
-                    </td>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>
-                        <h4>fullname:</h4>
-                    </td>
-                    <td>
-                        <input type="text" name="fullname" value="<?php echo $fullname ?>" placeholder="fullname" />
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <h4>Gender:</h4>
-                    </td>
-                    <td>
-                        <input type="text" name="gender" value="<?php echo $gender ?>" placeholder="gender" />
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <h4>email:</h4>
-                    </td>
-                    <td>
-                        <input type="text" name="email" value="<?php echo $email ?>" placeholder="email" />
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <h4>Phone:</h4>
-                    </td>
-                    <td>
-                        <input type="text" name="phone" value="<?php echo $phone ?>" placeholder="phone" />
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <h4>Tên dăng nhập:</h4>
-                    </td>
-                    <td>
-                        <input type="text" name="username" value="<?php echo $username ?>" placeholder="username" />
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <h4>Password:</h4>
-                    </td>
-                    <td>
-                        <input type="password" name="password" value="<?php echo $password ?>" placeholder="password" />
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <h4>Confirm password:</h4>
-                    </td>
-                    <td>
-                        <input type="password" name="repass" value="<?php echo $repass ?>" placeholder="repass" />
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <h4>Address:</h4>
-                    </td>
-                    <td>
-                        <input type="text" name="address" value="<?php echo $address ?> " placeholder="address" />
-                    </td>
-                </tr>
-            </tbody>
-            <tr>
-                <td colspan="2" align-item="center"><input type="submit" name="submit" value="submit">
-                    <input type="reset" name="reset" value="Reset">
-                </td>
-            </tr>
-        </table>
-    </form>
-    <div class="error-text">
-        <?php
-        if (!empty($err_fullname)) {
-            $flag = true;
-            echo $err_fullname . "<br>";
-        } else if (!empty($err_username)) {
-            $flag = true;
-            echo $err_username . "<br>";
-        } else if (!empty($err_pass)) {
-            $flag = true;
-            echo $err_pass . "<br>";
-        } else if (!empty($err_repass)) {
-            $flag = true;
-            echo $err_repass . "<br>";
-        } else if (!empty($err_email)) {
-            $flag = true;
-            echo $err_email . "<br>";
-        }
-        ?>
-        <?php
+    if($err_username ==""){  
         $localhost = "localhost:3307";
         $username_db = "root";
         $password = "";
@@ -249,13 +145,118 @@
             
             $sql = "INSERT INTO `users`(`fullname`, `username`, `pass`) VALUES ('$fullname','$username','$password')";
             if($conn->query($sql)=== true){
-                echo "Đã thêm tài khoản thành công";
+               // echo "Đã thêm tài khoản thành công";
             }
             else{
-                echo "Có lỗi khi chèn dữ liệu vào cơ sở dữ liệu: ".mysqli_error($conn);
+                //echo "Có lỗi khi chèn dữ liệu vào cơ sở dữ liệu: ".mysqli_error($conn);
             }
             mysqli_close($conn);
         }
+    }
+
+    ?>
+        ?>
+
+        <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']) ?>" name="register" method="post">
+            <table>
+                <thead>
+                    <tr>
+                        <td>
+                            <h1>Register page</h1>
+                        </td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <h4>fullname:</h4>
+                        </td>
+                        <td>
+                            <input type="text" name="fullname" value="<?php echo $fullname ?>" placeholder="fullname" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h4>Gender:</h4>
+                        </td>
+                        <td>
+                            <input type="text" name="gender" value="<?php echo $gender ?>" placeholder="gender" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h4>email:</h4>
+                        </td>
+                        <td>
+                            <input type="text" name="email" value="<?php echo $email ?>" placeholder="email" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h4>Phone:</h4>
+                        </td>
+                        <td>
+                            <input type="text" name="phone" value="<?php echo $phone ?>" placeholder="phone" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h4>Tên dăng nhập:</h4>
+                        </td>
+                        <td>
+                            <input type="text" name="username" value="<?php echo $username ?>" placeholder="username" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h4>Password:</h4>
+                        </td>
+                        <td>
+                            <input type="password" name="password" value="<?php echo $password ?>" placeholder="password" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h4>Confirm password:</h4>
+                        </td>
+                        <td>
+                            <input type="password" name="repass" value="<?php echo $repass ?>" placeholder="repass" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h4>Address:</h4>
+                        </td>
+                        <td>
+                            <input type="text" name="address" value="<?php echo $address ?> " placeholder="address" />
+                        </td>
+                    </tr>
+                </tbody>
+                <tr>
+                    <td colspan="2" align-item="center"><input type="submit" name="submit" value="submit">
+                        <input type="reset" name="reset" value="Reset">
+                    </td>
+                </tr>
+            </table>
+        </form>
+        <div class="error-text">
+            <?php
+            if (!empty($err_fullname)) {
+                $flag = true;
+                echo $err_fullname . "<br>";
+            } else if (!empty($err_username)) {
+                $flag = true;
+                echo $err_username . "<br>";
+            } else if (!empty($err_pass)) {
+                $flag = true;
+                echo $err_pass . "<br>";
+            } else if (!empty($err_repass)) {
+                $flag = true;
+                echo $err_repass . "<br>";
+            } else if (!empty($err_email)) {
+                $flag = true;
+                echo $err_email . "<br>";
+            }
         ?>
     </div>
 
