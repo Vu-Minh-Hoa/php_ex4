@@ -101,7 +101,7 @@
                 $sql = "SELECT ID FROM `users` WHERE username = '$username' and pass = '$password'";
                 $result = $conn->query($sql);
                 if ($result->num_rows>0) {
-                   header('Location: /php_school/table.php');
+                   header('Location: /php/home.php');
                 } else {
                     echo "Đăng nhập không thành công: tên đăng nhập hoặc mật khẩu sai. " ;
                 }

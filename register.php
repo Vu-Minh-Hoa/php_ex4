@@ -131,31 +131,29 @@
         $data = htmlspecialchars($data); // bỏ tác dụng cuẩ thẻ html, tương tự hàm htmlentities()
         return $data;
     }
-    if($err_username ==""){  
+    if($err_username =="" && $err_password ==""&& $err_repass ==""&& $err_fullname =="" && $err_gender =="" && $err_phone ==""){
         $localhost = "localhost:3307";
         $username_db = "root";
-        $password = "";
+        $password_db = "";
         $dbname = "register";
-        $conn = new mysqli($localhost, $username_db, $password, $dbname);
+        $conn = new mysqli($localhost, $username_db, $password_db, $dbname);
         if(!$conn){
             die("Kết nối cơ sở dữ liệu thất bại. ".mysqli_connect_error());
         }
         else{
-            echo "Kết nối thành công tới cơ sở dữ liệu mysql";
-            
             $sql = "INSERT INTO `users`(`fullname`, `username`, `pass`) VALUES ('$fullname','$username','$password')";
             if($conn->query($sql)=== true){
-               // echo "Đã thêm tài khoản thành công";
+                header('Location: /php/login.php');
             }
             else{
-                //echo "Có lỗi khi chèn dữ liệu vào cơ sở dữ liệu: ".mysqli_error($conn);
+                echo "Có lỗi khi chèn dữ liệu vào cơ sở dữ liệu: ".mysqli_error($conn);
             }
             mysqli_close($conn);
         }
     }
 
     ?>
-        ?>
+
 
         <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']) ?>" name="register" method="post">
             <table>

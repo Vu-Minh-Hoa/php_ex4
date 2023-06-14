@@ -47,33 +47,7 @@
 
 <body>
     <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']) ?>" name="login" method="post">
-        <table>
-            <thead>
-                <tr>
-                    <td>
-                        <h1>login page</h1>
-                    </td>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>
-                        <h4>username:</h4>
-                    </td>
-                    <td>
-                        <input type="text" name="username" placeholder="username" />
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <h4>password:</h4>
-                    </td>
-                    <td>
-                        <input type="password" name="password" placeholder="password" />
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+        <h1>Đây là trang chủ</h1>
     </form>
 
 </body>
