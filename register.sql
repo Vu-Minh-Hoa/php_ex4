@@ -31,17 +31,11 @@ CREATE TABLE `users` (
   `ID` int(11) NOT NULL,
   `fullname` varchar(255) NOT NULL,
   `username` varchar(100) NOT NULL,
+  `phone` varchar(100) NOT NULL,
+  `email` varchar(200) NOT NULL,
   `pass` varchar(35) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Đang đổ dữ liệu cho bảng `users`
---
-
-INSERT INTO `users` (`ID`, `fullname`, `username`, `pass`) VALUES
-(1, 'diem', 'meo', '01022002'),
-(25, 'hoa', 'hoa', '123456789'),
-(26, 'hoa', 'hoa', '12345678');
 
 --
 -- Chỉ mục cho các bảng đã đổ

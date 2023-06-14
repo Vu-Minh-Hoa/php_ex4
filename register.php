@@ -63,9 +63,9 @@
 <body>
 <?php
     
-    $fullname = $username = $gender = $password = $phone = $repass = $email = $address = "";
+    $fullname = $username = $password = $repass = $email = $address = "";
     $flag = false;
-    $err_username = $err_fullname = $err_gender = $err_password = $err_phone = $err_repass = $err_email = $err_address = "";
+    $err_username = $err_fullname = $err_password = $err_repass = $err_email = $err_address = "";
     //Kiểm tra tên người dùng
     if ($_SERVER['REQUEST_METHOD'] = "POST") {
         if (empty($_POST["fullname"])) {
@@ -105,14 +105,11 @@
             $repass = check_data($_POST["repass"]);
         }
         if (!preg_match("/^[a-zA-Z0-9]{8,30}$/", $repass)) {
-            $err_repass = "Mật khẩu chỉ có chữ và số";
+            $err_repass = "Mật khẩu phải từ 8 ký tự trở lên";
         }
         if ($password != $repass) {
             $err_repass = "Hai mật khẩu không khớp";
         }
-
-
-
         if (empty($_POST["email"])) {
             $err_email = "email không được trống";
         } else {
@@ -131,19 +128,19 @@
         $data = htmlspecialchars($data); // bỏ tác dụng cuẩ thẻ html, tương tự hàm htmlentities()
         return $data;
     }
-    if($err_username =="" && $err_password ==""&& $err_repass ==""&& $err_fullname =="" && $err_gender =="" && $err_phone ==""){
+    if($err_username =="" && $err_password ==""&& $err_repass ==""&& $err_fullname =="" ){
         $localhost = "localhost:3307";
         $username_db = "root";
-        $password_db = "";
-        $dbname = "register";
-        $conn = new mysqli($localhost, $username_db, $password_db, $dbname);
+        $ps = "";
+        $dbname = "ex";
+        $conn = new mysqli($localhost, $username_db, $ps, $dbname);
         if(!$conn){
             die("Kết nối cơ sở dữ liệu thất bại. ".mysqli_connect_error());
         }
         else{
-            $sql = "INSERT INTO `users`(`fullname`, `username`, `pass`) VALUES ('$fullname','$username','$password')";
+            $sql = "INSERT INTO `users`(`fullname`, `username`, `email`, `pass`) VALUES ('$fullname','$username', '$email', '$password')";
             if($conn->query($sql)=== true){
-                header('Location: /php/login.php');
+                header('Location: /php_school/home.php');
             }
             else{
                 echo "Có lỗi khi chèn dữ liệu vào cơ sở dữ liệu: ".mysqli_error($conn);
@@ -175,14 +172,6 @@
                     </tr>
                     <tr>
                         <td>
-                            <h4>Gender:</h4>
-                        </td>
-                        <td>
-                            <input type="text" name="gender" value="<?php echo $gender ?>" placeholder="gender" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
                             <h4>email:</h4>
                         </td>
                         <td>
@@ -191,15 +180,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <h4>Phone:</h4>
-                        </td>
-                        <td>
-                            <input type="text" name="phone" value="<?php echo $phone ?>" placeholder="phone" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <h4>Tên dăng nhập:</h4>
+                            <h4>Username:</h4>
                         </td>
                         <td>
                             <input type="text" name="username" value="<?php echo $username ?>" placeholder="username" />
@@ -219,14 +200,6 @@
                         </td>
                         <td>
                             <input type="password" name="repass" value="<?php echo $repass ?>" placeholder="repass" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <h4>Address:</h4>
-                        </td>
-                        <td>
-                            <input type="text" name="address" value="<?php echo $address ?> " placeholder="address" />
                         </td>
                     </tr>
                 </tbody>

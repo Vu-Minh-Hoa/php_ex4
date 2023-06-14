@@ -93,7 +93,7 @@
             $localhost = "localhost:3307";
             $username_db = "root";
             $password_db = "";
-            $dbname = "register";
+            $dbname = "ex";
             $conn = new mysqli($localhost, $username_db, $password_db, $dbname);
             if (!$conn) {
                 die("Kết nối cơ sở dữ liệu thất bại. " . mysqli_connect_error());
@@ -101,7 +101,7 @@
                 $sql = "SELECT ID FROM `users` WHERE username = '$username' and pass = '$password'";
                 $result = $conn->query($sql);
                 if ($result->num_rows>0) {
-                   header('Location: /php/home.php');
+                    header('Location: /php_school/home.php');
                 } else {
                     echo "Đăng nhập không thành công: tên đăng nhập hoặc mật khẩu sai. " ;
                 }
